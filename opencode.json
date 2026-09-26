@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "cloudflare-tunnel": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "-p",
+        "claude-mcp-tunnel",
+        "claude-mcp-tunnel-server"
+      ],
+      "enabled": true
+    }
+  }
+}
