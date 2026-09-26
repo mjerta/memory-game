@@ -1,0 +1,212 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.game-header {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1.25rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+
+  &.collapsed {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .header-main-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 2.6rem;
+  }
+
+  // Offset the expanded title so the h1 top margin matches the
+  // collapsed (vertically centered) state instead of jumping up.
+  &:not(.collapsed) .title-group {
+    margin-top: 0.49rem;
+  }
+
+  .title-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1e293b;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .subtitle {
+      font-size: 0.75rem;
+      color: #64748b;
+      line-height: 1.2;
+      margin-top: 0.15rem;
+      white-space: nowrap;
+      animation: fadeIn 0.15s ease-out;
+    }
+  }
+
+  .compact-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #334155;
+    background: #f1f5f9;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    animation: fadeIn 0.15s ease-out;
+
+    .compact-stat-divider {
+      color: #94a3b8;
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: none;
+    border-radius: 0.65rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      box-shadow 0.15s ease;
+
+    &.btn-restart {
+      background: #6366f1;
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(99, 102, 241, 0.35);
+
+      &:hover {
+        background: #4f46e5;
+      }
+    }
+
+    &.btn-toggle {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      min-width: 5.25rem;
+      justify-content: center;
+
+      &:hover {
+        background: #e2e8f0;
+        color: #0f172a;
+      }
+    }
+  }
+
+  .header-details {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid #f1f5f9;
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .stats-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    .stat-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.65rem;
+      padding: 0.3rem 0.75rem;
+      min-width: 55px;
+
+      .stat-label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #94a3b8;
+      }
+
+      .stat-value {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #0f172a;
+      }
+
+      &.pool-badge {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+
+        .stat-label,
+        .stat-value {
+          color: #15803d;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 0.75rem 1rem;
+
+    &.collapsed {
+      padding: 0.75rem 1rem;
+    }
+
+    .header-main-row {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .title-group h1 {
+      font-size: 1.15rem;
+    }
+
+    .compact-stats {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .btn-action {
+      padding: 0.4rem 0.65rem;
+      font-size: 0.75rem;
+
+      &.btn-toggle {
+        min-width: 4.6rem;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
