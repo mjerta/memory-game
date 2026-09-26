@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "Rocket",
+    "category": "space",
+    "image": "cards/svg/rocket.svg"
+  },
+  {
+    "id": 2,
+    "name": "Saturn",
+    "category": "space",
+    "image": "cards/svg/saturn.svg"
+  },
+  {
+    "id": 3,
+    "name": "Star",
+    "category": "space",
+    "image": "cards/svg/star.svg"
+  },
+  {
+    "id": 4,
+    "name": "Moon",
+    "category": "space",
+    "image": "cards/svg/moon.svg"
+  },
+  {
+    "id": 5,
+    "name": "Sun",
+    "category": "space",
+    "image": "cards/svg/sun.svg"
+  },
+  {
+    "id": 6,
+    "name": "Earth",
+    "category": "space",
+    "image": "cards/svg/earth.svg"
+  },
+  {
+    "id": 7,
+    "name": "UFO",
+    "category": "space",
+    "image": "cards/svg/ufo.svg"
+  },
+  {
+    "id": 8,
+    "name": "Comet",
+    "category": "space",
+    "image": "cards/svg/comet.svg"
+  },
+  {
+    "id": 9,
+    "name": "Diamond",
+    "category": "objects",
+    "image": "cards/svg/diamond.svg"
+  },
+  {
+    "id": 10,
+    "name": "Lightning",
+    "category": "nature",
+    "image": "cards/svg/lightning.svg"
+  },
+  {
+    "id": 11,
+    "name": "Fire",
+    "category": "nature",
+    "image": "cards/svg/fire.svg"
+  },
+  {
+    "id": 12,
+    "name": "Water",
+    "category": "nature",
+    "image": "cards/svg/water.svg"
+  },
+  {
+    "id": 13,
+    "name": "Clover",
+    "category": "nature",
+    "image": "cards/svg/clover.svg"
+  },
+  {
+    "id": 14,
+    "name": "Heart",
+    "category": "objects",
+    "image": "cards/svg/heart.svg"
+  },
+  {
+    "id": 15,
+    "name": "Bell",
+    "category": "objects",
+    "image": "cards/svg/bell.svg"
+  },
+  {
+    "id": 16,
+    "name": "Crown",
+    "category": "objects",
+    "image": "cards/svg/crown.svg"
+  },
+  {
+    "id": 17,
+    "name": "Shield",
+    "category": "objects",
+    "image": "cards/svg/shield.svg"
+  },
+  {
+    "id": 18,
+    "name": "Key",
+    "category": "objects",
+    "image": "cards/svg/key.svg"
+  },
+  {
+    "id": 19,
+    "name": "Anchor",
+    "category": "objects",
+    "image": "cards/svg/anchor.svg"
+  },
+  {
+    "id": 20,
+    "name": "Compass",
+    "category": "objects",
+    "image": "cards/svg/compass.svg"
+  },
+  {
+    "id": 21,
+    "name": "Trophy",
+    "category": "objects",
+    "image": "cards/svg/trophy.svg"
+  },
+  {
+    "id": 22,
+    "name": "Gamepad",
+    "category": "tech",
+    "image": "cards/svg/gamepad.svg"
+  },
+  {
+    "id": 23,
+    "name": "Guitar",
+    "category": "music",
+    "image": "cards/svg/guitar.svg"
+  },
+  {
+    "id": 24,
+    "name": "Palette",
+    "category": "art",
+    "image": "cards/svg/palette.svg"
+  },
+  {
+    "id": 25,
+    "name": "Music",
+    "category": "music",
+    "image": "cards/svg/music.svg"
+  },
+  {
+    "id": 26,
+    "name": "Camera",
+    "category": "tech",
+    "image": "cards/svg/camera.svg"
+  },
+  {
+    "id": 27,
+    "name": "Book",
+    "category": "education",
+    "image": "cards/svg/book.svg"
+  },
+  {
+    "id": 28,
+    "name": "Lightbulb",
+    "category": "ideas",
+    "image": "cards/svg/bulb.svg"
+  },
+  {
+    "id": 29,
+    "name": "Coffee",
+    "category": "food",
+    "image": "cards/svg/coffee.svg"
+  },
+  {
+    "id": 30,
+    "name": "Puzzle",
+    "category": "games",
+    "image": "cards/svg/puzzle.svg"
+  }
+]
