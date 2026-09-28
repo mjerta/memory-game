@@ -1,0 +1,41 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.victory-banner {
+  width: 100%;
+  background: #10b981;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+
+  h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  .btn-play-again {
+    background: #fff;
+    color: #065f46;
+    border: none;
+    font-weight: 700;
+    padding: 0.45rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition:
+      background 0.15s ease,
+      transform 0.1s ease;
+
+    &:hover {
+      background: #f0fdf4;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}

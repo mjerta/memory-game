@@ -1,0 +1,22 @@
+<button
+  type="button"
+  class="card"
+  [class.flipped]="card().isFlipped || card().isMatched"
+  [class.matched]="card().isMatched"
+  [class.flip-left]="flipDirection() === 'left'"
+  [class.flip-right]="flipDirection() === 'right'"
+  [disabled]="card().isMatched || disabled()"
+  (pointerdown)="onPointerDown($event)"
+  (click)="onSelect($event)"
+  [attr.aria-label]="card().isFlipped || card().isMatched ? card().name : 'Hidden card'"
+>
+  <div class="card-inner">
+    <div class="card-back">
+      <span class="card-back-pattern">?</span>
+    </div>
+    <div class="card-front">
+      <img [src]="card().image" [alt]="card().name" class="card-image" loading="lazy" />
+      <span class="card-name">{{ card().name }}</span>
+    </div>
+  </div>
+</button>

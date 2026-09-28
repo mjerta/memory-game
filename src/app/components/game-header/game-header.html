@@ -1,0 +1,107 @@
+<header class="game-header" [class.collapsed]="!isMenuOpen()">
+  <div class="header-main-row">
+    <div class="title-group">
+      <h1>Memory Game</h1>
+      @if (isMenuOpen()) {
+        <span class="subtitle">Match all pairs to win</span>
+      }
+    </div>
+
+    @if (!isMenuOpen()) {
+      <div class="compact-stats" aria-label="Current game stats">
+        <span class="compact-stat"><strong>Moves:</strong> {{ moves() }}</span>
+        <span class="compact-stat-divider">•</span>
+        <span class="compact-stat"
+          ><strong>Pairs:</strong> {{ matchedPairs() }}/{{ totalPairs() }}</span
+        >
+      </div>
+    }
+
+    <div class="header-actions">
+      <button
+        type="button"
+        class="btn-action btn-restart"
+        (click)="resetGame.emit()"
+        title="Reset board and start a new game"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19" />
+        </svg>
+        <span class="action-label">Reset</span>
+      </button>
+
+      <button
+        type="button"
+        class="btn-action btn-toggle"
+        (click)="toggleMenu.emit()"
+        [attr.aria-expanded]="isMenuOpen()"
+        [title]="isMenuOpen() ? 'Hide menu' : 'Show menu'"
+      >
+        @if (isMenuOpen()) {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
+          <span class="action-label">Hide</span>
+        } @else {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+          <span class="action-label">Menu</span>
+        }
+      </button>
+    </div>
+  </div>
+
+  @if (isMenuOpen()) {
+    <div class="header-details">
+      <div class="stats-bar">
+        <div class="stat-badge">
+          <span class="stat-label">Cards</span>
+          <span class="stat-value">{{ cardsCount() }}</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-label">Moves</span>
+          <span class="stat-value">{{ moves() }}</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-label">Pairs</span>
+          <span class="stat-value">{{ matchedPairs() }} / {{ totalPairs() }}</span>
+        </div>
+        <div class="stat-badge pool-badge" title="Master pool has 30 unique items for game modes">
+          <span class="stat-label">Pool</span>
+          <span class="stat-value">{{ cardPoolCount() }} items</span>
+        </div>
+      </div>
+    </div>
+  }
+</header>

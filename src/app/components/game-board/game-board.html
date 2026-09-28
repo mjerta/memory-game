@@ -1,0 +1,30 @@
+<div
+  class="game-container w-full max-w-[860px] mx-auto px-4 py-5 flex flex-col items-center"
+  (click)="onOutsideClick($event)"
+>
+  <app-game-header
+    [isMenuOpen]="isMenuOpen()"
+    [moves]="moves()"
+    [matchedPairs]="matchedPairs()"
+    [totalPairs]="totalPairs"
+    [cardsCount]="cards().length"
+    [cardPoolCount]="cardPool().length"
+    (resetGame)="initializeBoard()"
+    (toggleMenu)="toggleMenu()"
+  />
+
+  @if (isGameWon()) {
+    <app-victory-banner [moves]="moves()" (playAgain)="initializeBoard()" />
+  }
+
+  <main
+    class="playing-field grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-3 w-full"
+    aria-label="Memory Card Playing Field"
+    (click)="onOutsideClick($event)"
+  >
+    @for (card of cards(); track card.uid) {
+      <app-game-card [card]="card" [disabled]="isLocked()" (cardClick)="onCardClick($event)" />
+    }
+  </main>
+</div>
+
