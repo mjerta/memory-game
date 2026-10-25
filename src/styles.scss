@@ -12,7 +12,12 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background: #f1f5f9;
   color: #0f172a;
+  /* 100vh is the *large* viewport on phones: it reaches behind the browser
+     toolbar and behind Android/iOS system navigation buttons, so the bottom of
+     the page ends up out of sight. 100dvh tracks the actually visible area;
+     100vh stays as the fallback for browsers without dynamic viewport units. */
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 

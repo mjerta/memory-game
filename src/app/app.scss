@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  /* Fill the visible viewport: 100vh counts the area behind the browser
+     toolbar and behind Android/iOS system navigation buttons, 100dvh does not.
+     The 100vh line is the fallback for browsers without dynamic units. */
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* viewport-fit=cover lets the page reach the physical screen edges, so keep
+     the content clear of the notch/status bar, the iOS home indicator and
+     Android's gesture/3-button bar. The border-box sizing makes the padding
+     part of the 100dvh above, so the layout ends exactly at the visible edge
+     instead of overflowing behind the buttons. */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  background: #f1f5f9;
+}
