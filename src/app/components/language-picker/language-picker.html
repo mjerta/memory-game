@@ -1,0 +1,24 @@
+<div class="language-overlay" (click)="close.emit()">
+  <section class="language-panel" role="dialog" aria-modal="true" aria-labelledby="language-picker-title" (click)="$event.stopPropagation()">
+    <header class="language-panel-header">
+      <div>
+        <p class="language-eyebrow">{{ translations.t('language.eyebrow') }}</p>
+        <h2 id="language-picker-title">{{ translations.t('language.title') }}</h2>
+        <p class="language-description">{{ translations.t('language.description') }}</p>
+      </div>
+      <button type="button" class="language-close" [attr.aria-label]="translations.t('language.close')" (click)="close.emit()">×</button>
+    </header>
+    <div class="language-options">
+      @for (language of languages; track language.id) {
+        <button type="button" class="language-option" [class.selected]="selectedLanguage() === language.id"
+          [attr.aria-pressed]="selectedLanguage() === language.id" (click)="choose(language.id)">
+          <span class="language-flag" aria-hidden="true">{{ language.flag }}</span>
+          <span class="language-name">{{ language.nativeName }}</span>
+          @if (selectedLanguage() === language.id) {
+            <span class="language-selected" [attr.aria-label]="translations.t('language.selected')">✓</span>
+          }
+        </button>
+      }
+    </div>
+  </section>
+</div>

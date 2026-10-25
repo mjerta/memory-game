@@ -12,6 +12,7 @@ describe('GameBoard', () => {
 
   beforeEach(async () => {
     localStorage.removeItem('memory-game-theme');
+    localStorage.setItem('memory-game-language', 'en');
     await TestBed.configureTestingModule({
       imports: [GameBoard],
       providers: [provideHttpClient(), provideHttpClientTesting()],
@@ -26,6 +27,7 @@ describe('GameBoard', () => {
   afterEach(() => {
     vi.useRealTimers();
     localStorage.removeItem('memory-game-theme');
+    localStorage.removeItem('memory-game-language');
   });
 
   it('should create the component', () => {
@@ -55,6 +57,23 @@ describe('GameBoard', () => {
     httpTesting.expectOne('cards/cards.json').flush(
       component.cardPool().map((card) => ({ ...card, theme: 'animals' as const })),
     );
+  });
+
+  it('changes language without resetting cards or progress', () => {
+    httpTesting.expectOne('cards/cards.json').flush([]);
+    const openCard = component.cards()[0];
+    component.onCardClick(openCard);
+    const cardsBeforeLanguageChange = component.cards();
+    const activeUidsBeforeLanguageChange = component.activeFlippedUids();
+
+    component.selectLanguage('nl');
+    fixture.detectChanges();
+
+    expect(component.cards()).toBe(cardsBeforeLanguageChange);
+    expect(component.activeFlippedUids()).toBe(activeUidsBeforeLanguageChange);
+    expect(component.moves()).toBe(0);
+    expect(fixture.nativeElement.querySelector('h1').textContent).toContain('Memoryspel');
+    expect(localStorage.getItem('memory-game-language')).toBe('nl');
   });
 
   it('should consist of 10 pairs (each pairId appears twice)', () => {

@@ -9,15 +9,15 @@
   [disabled]="card().isMatched || disabled()"
   (pointerdown)="onPointerDown($event)"
   (click)="onSelect($event)"
-  [attr.aria-label]="card().isFlipped || card().isMatched ? card().name : 'Hidden card'"
+  [attr.aria-label]="card().isFlipped || card().isMatched ? cardName() : translations.t('card.hidden')"
 >
   <div class="card-inner">
     <div class="card-back">
       <span class="card-back-pattern">?</span>
     </div>
     <div class="card-front">
-      <img [src]="card().image" [alt]="card().name" class="card-image" loading="lazy" />
-      <span class="card-name">{{ card().name }}</span>
+      <img [src]="card().image" [alt]="cardName()" class="card-image" loading="lazy" />
+      <span class="card-name">{{ cardName() }}</span>
     </div>
   </div>
 </button>

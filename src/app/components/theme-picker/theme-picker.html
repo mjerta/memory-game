@@ -8,11 +8,11 @@
   >
     <header class="theme-panel-header">
       <div>
-        <p class="theme-eyebrow">Make it yours</p>
-        <h2 id="theme-picker-title">Choose a theme</h2>
-        <p class="theme-description">A fresh set of cards for your next round.</p>
+        <p class="theme-eyebrow">{{ translations.t('theme.eyebrow') }}</p>
+        <h2 id="theme-picker-title">{{ translations.t('theme.title') }}</h2>
+        <p class="theme-description">{{ translations.t('theme.description') }}</p>
       </div>
-      <button type="button" class="close-button" aria-label="Close theme picker" (click)="close.emit()">
+      <button type="button" class="close-button" [attr.aria-label]="translations.t('theme.close')" (click)="close.emit()">
         ×
       </button>
     </header>
@@ -32,9 +32,9 @@
             }
           </span>
           <span class="theme-option-footer">
-            <span class="theme-name">{{ theme.label }}</span>
+              <span class="theme-name">{{ themeLabel(theme.id) }}</span>
             @if (selectedTheme() === theme.id) {
-              <span class="selected-mark" aria-label="Currently selected">✓</span>
+              <span class="selected-mark" [attr.aria-label]="translations.t('theme.selected')">✓</span>
             }
           </span>
         </button>

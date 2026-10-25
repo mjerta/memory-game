@@ -1,6 +1,7 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { PlayingCard } from '../../models/card.model';
 import { CardTheme } from '../../models/card.model';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-game-card',
@@ -9,6 +10,7 @@ import { CardTheme } from '../../models/card.model';
   styleUrl: './game-card.scss',
 })
 export class GameCard {
+  readonly translations = inject(TranslationService);
   readonly card = input.required<PlayingCard>();
   readonly disabled = input<boolean>(false);
   readonly theme = input<CardTheme>('default');
@@ -16,6 +18,8 @@ export class GameCard {
   readonly cardClick = output<PlayingCard>();
 
   readonly flipDirection = signal<'left' | 'right'>('right');
+
+  cardName(): string { return this.translations.cardName(this.card().pairId, this.card().name); }
 
   private updateDirection(event: MouseEvent | PointerEvent): void {
     const isSyntheticKeyboardClick =

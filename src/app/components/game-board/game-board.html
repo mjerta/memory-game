@@ -10,9 +10,11 @@
     [cardsCount]="cards().length"
     [cardPoolCount]="cardPool().length"
     [theme]="theme()"
+    [language]="translations.language()"
     (resetGame)="initializeBoard()"
     (toggleMenu)="toggleMenu()"
     (openTheme)="openThemePicker()"
+    (openLanguage)="openLanguagePicker()"
   />
 
   @if (isGameWon()) {
@@ -21,7 +23,7 @@
 
   <main
     class="playing-field grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-3 w-full"
-    aria-label="Memory Card Playing Field"
+    [attr.aria-label]="translations.t('board.label')"
     (click)="onOutsideClick($event)"
   >
     @for (card of cards(); track card.uid) {
@@ -36,4 +38,9 @@
     (selectTheme)="selectTheme($event)"
     (close)="closeThemePicker()"
   />
+}
+
+@if (languagePickerOpen()) {
+  <app-language-picker [selectedLanguage]="translations.language()"
+    (selectLanguage)="selectLanguage($event)" (close)="closeLanguagePicker()" />
 }

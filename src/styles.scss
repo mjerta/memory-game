@@ -20,4 +20,53 @@ body {
   min-height: 100dvh;
 }
 
+app-game-header .stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+app-game-header .stat-badge {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding: 0.3rem 0.2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.65rem;
+  background: #f8fafc;
+}
+
+app-game-header .stat-label,
+app-game-header .stat-value {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+app-game-header .stat-label {
+  color: #94a3b8;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+app-game-header .stat-value {
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+app-game-header .pool-badge {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+app-game-header .pool-badge .stat-label,
+app-game-header .pool-badge .stat-value {
+  color: #15803d;
+}
 

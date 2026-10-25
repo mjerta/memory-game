@@ -1,4 +1,5 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-victory-banner',
@@ -7,6 +8,7 @@ import { Component, input, output } from '@angular/core';
   styleUrl: './victory-banner.scss',
 })
 export class VictoryBanner {
+  readonly translations = inject(TranslationService);
   readonly moves = input.required<number>();
   readonly playAgain = output<void>();
 }

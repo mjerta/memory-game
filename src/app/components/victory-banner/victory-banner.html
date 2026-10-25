@@ -1,4 +1,4 @@
 <div class="victory-banner" role="alert">
-  <h2>🎉 Congratulations! You won in {{ moves() }} moves!</h2>
-  <button type="button" class="btn-play-again" (click)="playAgain.emit()">Play Again</button>
+  <h2>🎉 {{ translations.t('victory.message', { moves: moves() }) }}</h2>
+  <button type="button" class="btn-play-again" (click)="playAgain.emit()">{{ translations.t('victory.playAgain') }}</button>
 </div>

@@ -1,5 +1,7 @@
 import { Component, HostListener, input, output } from '@angular/core';
 import { CardTheme, THEME_META } from '../../models/card.model';
+import { TranslationService } from '../../services/translation.service';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-theme-picker',
@@ -12,6 +14,15 @@ export class ThemePicker {
   readonly selectTheme = output<CardTheme>();
   readonly close = output<void>();
   readonly themes = THEME_META;
+  readonly translations = inject(TranslationService);
+
+  themeLabel(id: CardTheme): string {
+    switch (id) {
+      case 'animals': return this.translations.t('theme.animals');
+      case 'fruits': return this.translations.t('theme.fruits');
+      default: return this.translations.t('theme.default');
+    }
+  }
 
   choose(theme: CardTheme): void {
     this.selectTheme.emit(theme);

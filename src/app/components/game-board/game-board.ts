@@ -6,13 +6,16 @@ import { GameHeader } from '../game-header/game-header';
 import { VictoryBanner } from '../victory-banner/victory-banner';
 import { GameCard } from '../game-card/game-card';
 import { ThemePicker } from '../theme-picker/theme-picker';
+import { LanguagePicker } from '../language-picker/language-picker';
+import { Language } from '../../i18n/languages';
+import { TranslationService } from '../../services/translation.service';
 
 export type { PlayingCard } from '../../models/card.model';
 
 @Component({
   selector: 'app-game-board',
   standalone: true,
-  imports: [GameHeader, VictoryBanner, GameCard, ThemePicker],
+  imports: [GameHeader, VictoryBanner, GameCard, ThemePicker, LanguagePicker],
   templateUrl: './game-board.html',
   styleUrl: './game-board.scss',
 })
@@ -20,6 +23,7 @@ export class GameBoard implements OnInit {
   private static readonly THEME_STORAGE_KEY = 'memory-game-theme';
 
   private readonly cardService = inject(CardService);
+  readonly translations = inject(TranslationService);
 
   /** Master catalog of available card definitions */
   readonly cardPool = signal<CardDefinition[]>(DEFAULT_CARDS);
@@ -29,6 +33,7 @@ export class GameBoard implements OnInit {
 
   /** Whether the theme picker overlay is open */
   readonly themePickerOpen = signal<boolean>(false);
+  readonly languagePickerOpen = signal<boolean>(false);
 
   /** Target number of cards on current playing field */
   readonly targetCardCount = 20;
@@ -117,6 +122,13 @@ export class GameBoard implements OnInit {
 
   closeThemePicker(): void {
     this.themePickerOpen.set(false);
+  }
+
+  openLanguagePicker(): void { this.languagePickerOpen.set(true); }
+  closeLanguagePicker(): void { this.languagePickerOpen.set(false); }
+  selectLanguage(language: Language): void {
+    this.translations.setLanguage(language);
+    this.languagePickerOpen.set(false);
   }
 
   selectTheme(theme: CardTheme): void {
@@ -216,7 +228,9 @@ export class GameBoard implements OnInit {
       target.closest('app-game-card') ||
       target.closest('.header-actions') ||
       target.closest('.theme-trigger') ||
-      target.closest('app-theme-picker')
+      target.closest('app-theme-picker') ||
+      target.closest('.language-trigger') ||
+      target.closest('app-language-picker')
     ) {
       return;
     }
@@ -237,7 +251,9 @@ export class GameBoard implements OnInit {
       target.closest('app-game-card') ||
       target.closest('.header-actions') ||
       target.closest('.theme-trigger') ||
-      target.closest('app-theme-picker')
+      target.closest('app-theme-picker') ||
+      target.closest('.language-trigger') ||
+      target.closest('app-language-picker')
     ) {
       return;
     }
