@@ -1,6 +1,27 @@
 :host {
   display: block;
+  /* width:100% is the fallback where container query units are unsupported.
+     Otherwise shrink to the height the board has left, so the rows fit the
+     viewport exactly and the page never scrolls:
+     - desktop, 5 columns -> 4 rows of 0.75rem gaps:
+         row = (board height - 3 * 0.75rem) / 4, card = row * 3/4
+     - phones, 4 columns (<=680px) -> 5 rows of 0.5rem gaps:
+         row = (board height - 4 * 0.5rem) / 5, card = row * 3/4  */
   width: 100%;
+  width: min(100%, calc((100cqh - 2.25rem) * 0.1875));
+
+  @media (max-width: 680px) {
+    width: min(100%, calc((100cqh - 2rem) * 0.15));
+  }
+}
+
+/* Browsers without container query units (Safari < 16, Chrome < 105) cannot
+   evaluate the shrink formula above, so fall back to the full column width:
+   the board is content sized there and the page scrolls, as it did before. */
+@supports not (width: 1cqh) {
+  :host {
+    width: 100%;
+  }
 }
 
 .card {
@@ -63,6 +84,10 @@
   -webkit-backface-visibility: hidden;
   user-select: none;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  /* Cards shrink to fit the viewport, so the fixed-size face content (the
+     "?" and the 46px artwork) can end up bigger than a tiny card. Clip it
+     instead of letting it poke out and make the page scrollable. */
+  overflow: hidden;
 }
 
 .card-back {

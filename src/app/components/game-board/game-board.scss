@@ -1,7 +1,21 @@
+:host {
+  /* Make app-game-board a real link in the full-height chain: it is a child
+     of the flex column in app.html, so it has to stretch and pass the height
+     on to .game-container below. */
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 .game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* Fill the height the viewport leaves over, so the board below can take
+     whatever is left instead of pushing the page into scrolling. */
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
   max-width: 860px;
   margin: 0 auto;
@@ -10,12 +24,22 @@
 
 .playing-field {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
   width: 100%;
+  /* Claim the height the header (and victory banner) leave over. The 0 basis
+     and min-height:0 keep the board from adding to the page height. */
+  flex: 1 1 0%;
+  min-height: 0;
+  /* Own the height before contents do (container-type: size applies size
+     containment), so the cards below can size themselves against it with cqh
+     units and shrink until the rows fit exactly. */
+  container-type: size;
+  justify-items: center;
+  align-content: center;
 
   @media (max-width: 680px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.5rem;
   }
 }
