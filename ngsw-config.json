@@ -25,6 +25,14 @@
           "/icons/**"
         ]
       }
+    },
+    {
+      "name": "audio",
+      "installMode": "lazy",
+      "updateMode": "lazy",
+      "resources": {
+        "files": ["/audio/**"]
+      }
     }
   ],
   "navigationUrls": [

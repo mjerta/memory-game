@@ -20,11 +20,13 @@ export class GameHeader {
   readonly cardPoolCount = input<number>(0);
   readonly theme = input<CardTheme>('default');
   readonly language = input<Language>('en');
+  readonly soundEnabled = input<boolean>(true);
 
   readonly resetGame = output<void>();
   readonly toggleMenu = output<void>();
   readonly openTheme = output<void>();
   readonly openLanguage = output<void>();
+  readonly toggleSound = output<void>();
 
   themeName(): string {
     const id = THEME_META.find((theme) => theme.id === this.theme())?.id ?? 'default';

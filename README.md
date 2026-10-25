@@ -44,6 +44,20 @@ To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use th
 ng test
 ```
 
+## Spoken card names
+
+Card names use localized WAV clips for English, Dutch, German, French, Spanish, and Tagalog. Files are in `public/audio/<language>/`; the service worker caches them lazily, so they do not download until played. See the [voice-over guide](docs/voice-over.md) for playback behavior, regeneration, adding languages, and voice licenses.
+
+To regenerate the clips, install Piper and Sherpa-ONNX in a local virtual environment and run the generator (voice models are downloaded into a gitignored directory):
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install piper-tts sherpa-onnx
+.venv/bin/python scripts/generate-card-audio.py
+```
+
+`ffmpeg` is also required. Voices are Piper Ryan (English), Pim (Dutch), Thorsten (German), Tom (French), and DaveFX (Spanish); Tagalog uses Meta MMS-TTS. Voice-model licenses vary: the Ryan model card cites **CC BY-NC-SA 4.0**, the French Tom model card cites **AGPLv3**, and MMS-TTS is **CC BY-NC 4.0**. Check each upstream model card and keep generated assets within the applicable terms, especially for commercial use.
+
 ## Running end-to-end tests
 
 For end-to-end (e2e) testing, run:

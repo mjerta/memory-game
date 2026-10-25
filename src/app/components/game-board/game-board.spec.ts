@@ -4,18 +4,26 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { vi } from 'vitest';
 import { GameBoard } from './game-board';
 import { DEFAULT_CARDS } from '../../constants/card.constants';
+import { AudioService } from '../../services/audio.service';
+import { signal } from '@angular/core';
 
 describe('GameBoard', () => {
   let component: GameBoard;
   let fixture: ComponentFixture<GameBoard>;
   let httpTesting: HttpTestingController;
+  let audioServiceMock: Pick<AudioService, 'enabled' | 'toggle' | 'playCardName'>;
 
   beforeEach(async () => {
     localStorage.removeItem('memory-game-theme');
     localStorage.setItem('memory-game-language', 'en');
+    audioServiceMock = { enabled: signal(true), toggle: vi.fn(), playCardName: vi.fn() };
     await TestBed.configureTestingModule({
       imports: [GameBoard],
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: AudioService, useValue: audioServiceMock },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameBoard);
@@ -107,6 +115,17 @@ describe('GameBoard', () => {
     const updatedCard = component.cards().find((c) => c.uid === firstCard.uid);
     expect(updatedCard?.isFlipped).toBe(true);
     expect(component.activeFlippedUids()).toContain(firstCard.uid);
+    expect(audioServiceMock.playCardName).toHaveBeenCalledWith(firstCard.pairId, 'en');
+  });
+
+  it('does not replay the card name when an open card is flipped back', () => {
+    const card = component.cards()[0];
+    component.onCardClick(card);
+    const openedCard = component.cards().find((current) => current.uid === card.uid)!;
+    component.onCardClick(openedCard);
+
+    expect(audioServiceMock.playCardName).toHaveBeenCalledOnce();
+    expect(component.cards().find((current) => current.uid === card.uid)?.isFlipped).toBe(false);
   });
 
   it('should match two cards of the same pairId', () => {

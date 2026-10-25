@@ -96,4 +96,13 @@ describe('GameHeader', () => {
     button.click();
     expect(emitted).toBe(true);
   });
+
+  it('should emit toggleSound when the sound button is clicked', () => {
+    let emitted = false;
+    component.toggleSound.subscribe(() => (emitted = true));
+    const button = fixture.nativeElement.querySelector('.sound-trigger') as HTMLButtonElement;
+    expect(button.getAttribute('aria-pressed')).toBe('true');
+    button.click();
+    expect(emitted).toBe(true);
+  });
 });

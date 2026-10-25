@@ -143,7 +143,7 @@
 
   .menu-selectors {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
     gap: 0.5rem;
     width: 100%;
@@ -205,6 +205,14 @@
     .menu-selectors .theme-trigger {
       gap: 0.15rem;
       font-size: 0.68rem;
+    }
+
+    .menu-selectors {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      .sound-trigger {
+        grid-column: 1 / -1;
+      }
     }
 
     @media (max-width: 360px) {

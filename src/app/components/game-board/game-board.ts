@@ -9,6 +9,7 @@ import { ThemePicker } from '../theme-picker/theme-picker';
 import { LanguagePicker } from '../language-picker/language-picker';
 import { Language } from '../../i18n/languages';
 import { TranslationService } from '../../services/translation.service';
+import { AudioService } from '../../services/audio.service';
 
 export type { PlayingCard } from '../../models/card.model';
 
@@ -24,6 +25,7 @@ export class GameBoard implements OnInit {
 
   private readonly cardService = inject(CardService);
   readonly translations = inject(TranslationService);
+  readonly audio = inject(AudioService);
 
   /** Master catalog of available card definitions */
   readonly cardPool = signal<CardDefinition[]>(DEFAULT_CARDS);
@@ -130,6 +132,8 @@ export class GameBoard implements OnInit {
     this.translations.setLanguage(language);
     this.languagePickerOpen.set(false);
   }
+
+  toggleSound(): void { this.audio.toggle(); }
 
   selectTheme(theme: CardTheme): void {
     this.themePickerOpen.set(false);
@@ -283,6 +287,7 @@ export class GameBoard implements OnInit {
     this.cards.update((list) =>
       list.map((c) => (c.uid === card.uid ? { ...c, isFlipped: true } : c)),
     );
+    this.audio.playCardName(card.pairId, this.translations.language());
     this.activeFlippedUids.set(currentFlipped);
 
     if (currentFlipped.length === 2) {

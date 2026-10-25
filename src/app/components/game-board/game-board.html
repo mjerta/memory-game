@@ -11,10 +11,12 @@
     [cardPoolCount]="cardPool().length"
     [theme]="theme()"
     [language]="translations.language()"
+    [soundEnabled]="audio.enabled()"
     (resetGame)="initializeBoard()"
     (toggleMenu)="toggleMenu()"
     (openTheme)="openThemePicker()"
     (openLanguage)="openLanguagePicker()"
+    (toggleSound)="toggleSound()"
   />
 
   @if (isGameWon()) {
