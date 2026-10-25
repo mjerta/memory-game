@@ -9,8 +9,10 @@
     [totalPairs]="totalPairs"
     [cardsCount]="cards().length"
     [cardPoolCount]="cardPool().length"
+    [theme]="theme()"
     (resetGame)="initializeBoard()"
     (toggleMenu)="toggleMenu()"
+    (openTheme)="openThemePicker()"
   />
 
   @if (isGameWon()) {
@@ -23,8 +25,15 @@
     (click)="onOutsideClick($event)"
   >
     @for (card of cards(); track card.uid) {
-      <app-game-card [card]="card" [disabled]="isLocked()" (cardClick)="onCardClick($event)" />
+      <app-game-card [card]="card" [theme]="theme()" [disabled]="isLocked()" (cardClick)="onCardClick($event)" />
     }
   </main>
 </div>
 
+@if (themePickerOpen()) {
+  <app-theme-picker
+    [selectedTheme]="theme()"
+    (selectTheme)="selectTheme($event)"
+    (close)="closeThemePicker()"
+  />
+}

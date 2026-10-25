@@ -3,180 +3,378 @@
     "id": 1,
     "name": "Rocket",
     "category": "space",
-    "image": "cards/svg/rocket.svg"
+    "image": "cards/svg/rocket.svg",
+    "theme": "default"
   },
   {
     "id": 2,
     "name": "Saturn",
     "category": "space",
-    "image": "cards/svg/saturn.svg"
+    "image": "cards/svg/saturn.svg",
+    "theme": "default"
   },
   {
     "id": 3,
     "name": "Star",
     "category": "space",
-    "image": "cards/svg/star.svg"
+    "image": "cards/svg/star.svg",
+    "theme": "default"
   },
   {
     "id": 4,
     "name": "Moon",
     "category": "space",
-    "image": "cards/svg/moon.svg"
+    "image": "cards/svg/moon.svg",
+    "theme": "default"
   },
   {
     "id": 5,
     "name": "Sun",
     "category": "space",
-    "image": "cards/svg/sun.svg"
+    "image": "cards/svg/sun.svg",
+    "theme": "default"
   },
   {
     "id": 6,
     "name": "Earth",
     "category": "space",
-    "image": "cards/svg/earth.svg"
+    "image": "cards/svg/earth.svg",
+    "theme": "default"
   },
   {
     "id": 7,
     "name": "UFO",
     "category": "space",
-    "image": "cards/svg/ufo.svg"
+    "image": "cards/svg/ufo.svg",
+    "theme": "default"
   },
   {
     "id": 8,
     "name": "Comet",
     "category": "space",
-    "image": "cards/svg/comet.svg"
+    "image": "cards/svg/comet.svg",
+    "theme": "default"
   },
   {
     "id": 9,
     "name": "Diamond",
     "category": "objects",
-    "image": "cards/svg/diamond.svg"
+    "image": "cards/svg/diamond.svg",
+    "theme": "default"
   },
   {
     "id": 10,
     "name": "Lightning",
     "category": "nature",
-    "image": "cards/svg/lightning.svg"
+    "image": "cards/svg/lightning.svg",
+    "theme": "default"
   },
   {
     "id": 11,
     "name": "Fire",
     "category": "nature",
-    "image": "cards/svg/fire.svg"
+    "image": "cards/svg/fire.svg",
+    "theme": "default"
   },
   {
     "id": 12,
     "name": "Water",
     "category": "nature",
-    "image": "cards/svg/water.svg"
+    "image": "cards/svg/water.svg",
+    "theme": "default"
   },
   {
     "id": 13,
     "name": "Clover",
     "category": "nature",
-    "image": "cards/svg/clover.svg"
+    "image": "cards/svg/clover.svg",
+    "theme": "default"
   },
   {
     "id": 14,
     "name": "Heart",
     "category": "objects",
-    "image": "cards/svg/heart.svg"
+    "image": "cards/svg/heart.svg",
+    "theme": "default"
   },
   {
     "id": 15,
     "name": "Bell",
     "category": "objects",
-    "image": "cards/svg/bell.svg"
+    "image": "cards/svg/bell.svg",
+    "theme": "default"
   },
   {
     "id": 16,
     "name": "Crown",
     "category": "objects",
-    "image": "cards/svg/crown.svg"
+    "image": "cards/svg/crown.svg",
+    "theme": "default"
   },
   {
     "id": 17,
     "name": "Shield",
     "category": "objects",
-    "image": "cards/svg/shield.svg"
+    "image": "cards/svg/shield.svg",
+    "theme": "default"
   },
   {
     "id": 18,
     "name": "Key",
     "category": "objects",
-    "image": "cards/svg/key.svg"
+    "image": "cards/svg/key.svg",
+    "theme": "default"
   },
   {
     "id": 19,
     "name": "Anchor",
     "category": "objects",
-    "image": "cards/svg/anchor.svg"
+    "image": "cards/svg/anchor.svg",
+    "theme": "default"
   },
   {
     "id": 20,
     "name": "Compass",
     "category": "objects",
-    "image": "cards/svg/compass.svg"
+    "image": "cards/svg/compass.svg",
+    "theme": "default"
   },
   {
     "id": 21,
     "name": "Trophy",
     "category": "objects",
-    "image": "cards/svg/trophy.svg"
+    "image": "cards/svg/trophy.svg",
+    "theme": "default"
   },
   {
     "id": 22,
     "name": "Gamepad",
     "category": "tech",
-    "image": "cards/svg/gamepad.svg"
+    "image": "cards/svg/gamepad.svg",
+    "theme": "default"
   },
   {
     "id": 23,
     "name": "Guitar",
     "category": "music",
-    "image": "cards/svg/guitar.svg"
+    "image": "cards/svg/guitar.svg",
+    "theme": "default"
   },
   {
     "id": 24,
     "name": "Palette",
     "category": "art",
-    "image": "cards/svg/palette.svg"
+    "image": "cards/svg/palette.svg",
+    "theme": "default"
   },
   {
     "id": 25,
     "name": "Music",
     "category": "music",
-    "image": "cards/svg/music.svg"
+    "image": "cards/svg/music.svg",
+    "theme": "default"
   },
   {
     "id": 26,
     "name": "Camera",
     "category": "tech",
-    "image": "cards/svg/camera.svg"
+    "image": "cards/svg/camera.svg",
+    "theme": "default"
   },
   {
     "id": 27,
     "name": "Book",
     "category": "education",
-    "image": "cards/svg/book.svg"
+    "image": "cards/svg/book.svg",
+    "theme": "default"
   },
   {
     "id": 28,
     "name": "Lightbulb",
     "category": "ideas",
-    "image": "cards/svg/bulb.svg"
+    "image": "cards/svg/bulb.svg",
+    "theme": "default"
   },
   {
     "id": 29,
     "name": "Coffee",
     "category": "food",
-    "image": "cards/svg/coffee.svg"
+    "image": "cards/svg/coffee.svg",
+    "theme": "default"
   },
   {
     "id": 30,
     "name": "Puzzle",
     "category": "games",
-    "image": "cards/svg/puzzle.svg"
+    "image": "cards/svg/puzzle.svg",
+    "theme": "default"
+  },
+  {
+    "id": 31,
+    "name": "Cat",
+    "category": "animals",
+    "image": "cards/svg/cat.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 32,
+    "name": "Dog",
+    "category": "animals",
+    "image": "cards/svg/dog.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 33,
+    "name": "Lion",
+    "category": "animals",
+    "image": "cards/svg/lion.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 34,
+    "name": "Elephant",
+    "category": "animals",
+    "image": "cards/svg/elephant.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 35,
+    "name": "Frog",
+    "category": "animals",
+    "image": "cards/svg/frog.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 36,
+    "name": "Butterfly",
+    "category": "animals",
+    "image": "cards/svg/butterfly.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 37,
+    "name": "Bee",
+    "category": "animals",
+    "image": "cards/svg/bee.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 38,
+    "name": "Owl",
+    "category": "animals",
+    "image": "cards/svg/owl.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 39,
+    "name": "Penguin",
+    "category": "animals",
+    "image": "cards/svg/penguin.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 40,
+    "name": "Turtle",
+    "category": "animals",
+    "image": "cards/svg/turtle.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 41,
+    "name": "Rabbit",
+    "category": "animals",
+    "image": "cards/svg/rabbit.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 42,
+    "name": "Fox",
+    "category": "animals",
+    "image": "cards/svg/fox.svg",
+    "theme": "animals"
+  },
+  {
+    "id": 43,
+    "name": "Apple",
+    "category": "fruits",
+    "image": "cards/svg/apple.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 44,
+    "name": "Banana",
+    "category": "fruits",
+    "image": "cards/svg/banana.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 45,
+    "name": "Cherry",
+    "category": "fruits",
+    "image": "cards/svg/cherry.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 46,
+    "name": "Grapes",
+    "category": "fruits",
+    "image": "cards/svg/grapes.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 47,
+    "name": "Orange",
+    "category": "fruits",
+    "image": "cards/svg/orange.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 48,
+    "name": "Strawberry",
+    "category": "fruits",
+    "image": "cards/svg/strawberry.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 49,
+    "name": "Watermelon",
+    "category": "fruits",
+    "image": "cards/svg/watermelon.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 50,
+    "name": "Pineapple",
+    "category": "fruits",
+    "image": "cards/svg/pineapple.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 51,
+    "name": "Pear",
+    "category": "fruits",
+    "image": "cards/svg/pear.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 52,
+    "name": "Peach",
+    "category": "fruits",
+    "image": "cards/svg/peach.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 53,
+    "name": "Lemon",
+    "category": "fruits",
+    "image": "cards/svg/lemon.svg",
+    "theme": "fruits"
+  },
+  {
+    "id": 54,
+    "name": "Mango",
+    "category": "fruits",
+    "image": "cards/svg/mango.svg",
+    "theme": "fruits"
   }
 ]

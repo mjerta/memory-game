@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { vi } from 'vitest';
 import { GameBoard } from './game-board';
 import { DEFAULT_CARDS } from '../../constants/card.constants';
@@ -8,8 +8,10 @@ import { DEFAULT_CARDS } from '../../constants/card.constants';
 describe('GameBoard', () => {
   let component: GameBoard;
   let fixture: ComponentFixture<GameBoard>;
+  let httpTesting: HttpTestingController;
 
   beforeEach(async () => {
+    localStorage.removeItem('memory-game-theme');
     await TestBed.configureTestingModule({
       imports: [GameBoard],
       providers: [provideHttpClient(), provideHttpClientTesting()],
@@ -18,10 +20,12 @@ describe('GameBoard', () => {
     fixture = TestBed.createComponent(GameBoard);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    httpTesting = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
     vi.useRealTimers();
+    localStorage.removeItem('memory-game-theme');
   });
 
   it('should create the component', () => {
@@ -37,6 +41,20 @@ describe('GameBoard', () => {
     expect(component.cards().length).toBe(20);
     const cardElements = fixture.nativeElement.querySelectorAll('.card');
     expect(cardElements.length).toBe(20);
+  });
+
+  it('should switch the pool, deal a new theme and persist the selection', () => {
+    httpTesting.expectOne('cards/cards.json').flush([]);
+
+    component.selectTheme('animals');
+    expect(component.theme()).toBe('animals');
+    expect(component.cardPool().every((card) => card.category === 'animals')).toBe(true);
+    expect(component.cards().length).toBe(20);
+    expect(localStorage.getItem('memory-game-theme')).toBe('animals');
+
+    httpTesting.expectOne('cards/cards.json').flush(
+      component.cardPool().map((card) => ({ ...card, theme: 'animals' as const })),
+    );
   });
 
   it('should consist of 10 pairs (each pairId appears twice)', () => {

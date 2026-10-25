@@ -102,6 +102,11 @@
           <span class="stat-value">{{ cardPoolCount() }} items</span>
         </div>
       </div>
+      <button type="button" class="btn-action theme-trigger" (click)="openTheme.emit()">
+        <span class="theme-trigger-icon" aria-hidden="true">✦</span>
+        <span>Theme: {{ themeName() }}</span>
+        <span aria-hidden="true">▾</span>
+      </button>
     </div>
   }
 </header>

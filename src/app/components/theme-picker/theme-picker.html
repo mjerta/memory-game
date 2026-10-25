@@ -1,0 +1,44 @@
+<div class="theme-overlay" (click)="close.emit()">
+  <section
+    class="theme-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="theme-picker-title"
+    (click)="$event.stopPropagation()"
+  >
+    <header class="theme-panel-header">
+      <div>
+        <p class="theme-eyebrow">Make it yours</p>
+        <h2 id="theme-picker-title">Choose a theme</h2>
+        <p class="theme-description">A fresh set of cards for your next round.</p>
+      </div>
+      <button type="button" class="close-button" aria-label="Close theme picker" (click)="close.emit()">
+        ×
+      </button>
+    </header>
+
+    <div class="theme-options">
+      @for (theme of themes; track theme.id) {
+        <button
+          type="button"
+          class="theme-option"
+          [class.selected]="selectedTheme() === theme.id"
+          [attr.aria-pressed]="selectedTheme() === theme.id"
+          (click)="choose(theme.id)"
+        >
+          <span class="theme-preview" [attr.data-theme]="theme.id">
+            @for (image of theme.preview; track image) {
+              <img [src]="image" alt="" />
+            }
+          </span>
+          <span class="theme-option-footer">
+            <span class="theme-name">{{ theme.label }}</span>
+            @if (selectedTheme() === theme.id) {
+              <span class="selected-mark" aria-label="Currently selected">✓</span>
+            }
+          </span>
+        </button>
+      }
+    </div>
+  </section>
+</div>

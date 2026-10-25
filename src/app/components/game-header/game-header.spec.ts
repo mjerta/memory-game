@@ -83,4 +83,17 @@ describe('GameHeader', () => {
 
     expect(toggleEmitted).toBe(true);
   });
+
+  it('should render a theme button in the expanded menu and emit openTheme', () => {
+    let emitted = false;
+    component.openTheme.subscribe(() => (emitted = true));
+    fixture.componentRef.setInput('theme', 'animals');
+    fixture.detectChanges();
+
+    const button = fixture.nativeElement.querySelector('.theme-trigger') as HTMLButtonElement;
+    expect(button).toBeTruthy();
+    expect(button.textContent).toContain('Animals');
+    button.click();
+    expect(emitted).toBe(true);
+  });
 });

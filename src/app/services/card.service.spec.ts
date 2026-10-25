@@ -3,7 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { CardService } from './card.service';
 import { CardDefinition } from '../models/card.model';
-import { DEFAULT_CARDS } from '../constants/card.constants';
+import { ANIMAL_CARDS, DEFAULT_CARDS, FRUIT_CARDS } from '../constants/card.constants';
 
 describe('CardService', () => {
   let service: CardService;
@@ -47,5 +47,36 @@ describe('CardService', () => {
 
     const req = httpTesting.expectOne('cards/cards.json');
     req.error(new ProgressEvent('Network error'));
+  });
+
+  it('should return only cards for the selected theme', () => {
+    const catalog: CardDefinition[] = [
+      { id: 1, name: 'Rocket', image: 'rocket.svg' },
+      { id: 31, name: 'Cat', image: 'cat.svg', theme: 'animals' },
+      { id: 43, name: 'Apple', image: 'apple.svg', theme: 'fruits' },
+    ];
+
+    service.getCards('animals').subscribe((cards) => {
+      expect(cards.map((card) => card.name)).toEqual(['Cat']);
+    });
+
+    httpTesting.expectOne('cards/cards.json').flush(catalog);
+  });
+
+  it('should use the matching fallback pool if the catalog request fails', () => {
+    service.getCards('fruits').subscribe((cards) => {
+      expect(cards).toEqual(FRUIT_CARDS);
+      expect(cards.length).toBeGreaterThan(10);
+    });
+
+    httpTesting.expectOne('cards/cards.json').error(new ProgressEvent('Network error'));
+  });
+
+  it('should use the animal fallback pool when the catalog request fails', () => {
+    service.getCards('animals').subscribe((cards) => {
+      expect(cards).toEqual(ANIMAL_CARDS);
+    });
+
+    httpTesting.expectOne('cards/cards.json').error(new ProgressEvent('Network error'));
   });
 });

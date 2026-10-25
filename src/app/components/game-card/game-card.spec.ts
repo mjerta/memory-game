@@ -39,6 +39,12 @@ describe('GameCard', () => {
     expect(name?.textContent).toBe('Rocket');
   });
 
+  it('should expose the selected theme on the card element', () => {
+    fixture.componentRef.setInput('theme', 'fruits');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.card').getAttribute('data-theme')).toBe('fruits');
+  });
+
   it('should have hidden aria-label when not flipped or matched', () => {
     const button = fixture.nativeElement.querySelector('button');
     expect(button.getAttribute('aria-label')).toBe('Hidden card');

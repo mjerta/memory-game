@@ -1,5 +1,6 @@
 import { Component, input, output, signal } from '@angular/core';
 import { PlayingCard } from '../../models/card.model';
+import { CardTheme } from '../../models/card.model';
 
 @Component({
   selector: 'app-game-card',
@@ -10,6 +11,7 @@ import { PlayingCard } from '../../models/card.model';
 export class GameCard {
   readonly card = input.required<PlayingCard>();
   readonly disabled = input<boolean>(false);
+  readonly theme = input<CardTheme>('default');
 
   readonly cardClick = output<PlayingCard>();
 

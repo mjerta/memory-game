@@ -1,25 +1,34 @@
 import { Component, HostListener, OnInit, computed, inject, signal } from '@angular/core';
 import { CardService } from '../../services/card.service';
-import { CardDefinition, PlayingCard } from '../../models/card.model';
-import { DEFAULT_CARDS } from '../../constants/card.constants';
+import { CardDefinition, CardTheme, PlayingCard } from '../../models/card.model';
+import { ANIMAL_CARDS, DEFAULT_CARDS, FRUIT_CARDS } from '../../constants/card.constants';
 import { GameHeader } from '../game-header/game-header';
 import { VictoryBanner } from '../victory-banner/victory-banner';
 import { GameCard } from '../game-card/game-card';
+import { ThemePicker } from '../theme-picker/theme-picker';
 
 export type { PlayingCard } from '../../models/card.model';
 
 @Component({
   selector: 'app-game-board',
   standalone: true,
-  imports: [GameHeader, VictoryBanner, GameCard],
+  imports: [GameHeader, VictoryBanner, GameCard, ThemePicker],
   templateUrl: './game-board.html',
   styleUrl: './game-board.scss',
 })
 export class GameBoard implements OnInit {
+  private static readonly THEME_STORAGE_KEY = 'memory-game-theme';
+
   private readonly cardService = inject(CardService);
 
   /** Master catalog of available card definitions */
   readonly cardPool = signal<CardDefinition[]>(DEFAULT_CARDS);
+
+  /** Currently selected card theme */
+  readonly theme = signal<CardTheme>(this.loadTheme());
+
+  /** Whether the theme picker overlay is open */
+  readonly themePickerOpen = signal<boolean>(false);
 
   /** Target number of cards on current playing field */
   readonly targetCardCount = 20;
@@ -57,8 +66,19 @@ export class GameBoard implements OnInit {
   });
 
   ngOnInit(): void {
+    this.cardPool.set(this.fallbackPool(this.theme()));
     this.initializeBoard();
-    this.cardService.getCards().subscribe({
+    this.loadPool(this.theme());
+  }
+
+  private fallbackPool(theme: CardTheme): CardDefinition[] {
+    if (theme === 'animals') return ANIMAL_CARDS;
+    if (theme === 'fruits') return FRUIT_CARDS;
+    return DEFAULT_CARDS;
+  }
+
+  private loadPool(theme: CardTheme): void {
+    this.cardService.getCards(theme).subscribe({
       next: (pool) => {
         if (pool && pool.length > 0) {
           this.cardPool.set(pool);
@@ -68,9 +88,45 @@ export class GameBoard implements OnInit {
     });
   }
 
+  private loadTheme(): CardTheme {
+    try {
+      const saved = localStorage.getItem(GameBoard.THEME_STORAGE_KEY);
+      if (saved === 'animals' || saved === 'fruits') return saved;
+    } catch {
+      // Storage may be unavailable in private browsing.
+    }
+    return 'default';
+  }
+
+  private persistTheme(theme: CardTheme): void {
+    try {
+      localStorage.setItem(GameBoard.THEME_STORAGE_KEY, theme);
+    } catch {
+      // Keep the selected theme for this session if storage is unavailable.
+    }
+  }
+
   /** Toggle menu visibility */
   toggleMenu(): void {
     this.isMenuOpen.update((open) => !open);
+  }
+
+  openThemePicker(): void {
+    this.themePickerOpen.set(true);
+  }
+
+  closeThemePicker(): void {
+    this.themePickerOpen.set(false);
+  }
+
+  selectTheme(theme: CardTheme): void {
+    this.themePickerOpen.set(false);
+    if (theme === this.theme()) return;
+    this.theme.set(theme);
+    this.persistTheme(theme);
+    this.cardPool.set(this.fallbackPool(theme));
+    this.initializeBoard();
+    this.loadPool(theme);
   }
 
   /**
@@ -158,7 +214,9 @@ export class GameBoard implements OnInit {
     if (
       target.closest('.card') ||
       target.closest('app-game-card') ||
-      target.closest('.header-actions')
+      target.closest('.header-actions') ||
+      target.closest('.theme-trigger') ||
+      target.closest('app-theme-picker')
     ) {
       return;
     }
@@ -177,7 +235,9 @@ export class GameBoard implements OnInit {
     if (
       target.closest('.card') ||
       target.closest('app-game-card') ||
-      target.closest('.header-actions')
+      target.closest('.header-actions') ||
+      target.closest('.theme-trigger') ||
+      target.closest('app-theme-picker')
     ) {
       return;
     }

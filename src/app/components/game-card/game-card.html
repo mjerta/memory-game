@@ -1,6 +1,7 @@
 <button
   type="button"
   class="card"
+  [attr.data-theme]="theme()"
   [class.flipped]="card().isFlipped || card().isMatched"
   [class.matched]="card().isMatched"
   [class.flip-left]="flipDirection() === 'left'"

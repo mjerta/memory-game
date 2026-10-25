@@ -1,4 +1,5 @@
 import { Component, input, output } from '@angular/core';
+import { CardTheme, THEME_META } from '../../models/card.model';
 
 @Component({
   selector: 'app-game-header',
@@ -13,7 +14,13 @@ export class GameHeader {
   readonly totalPairs = input<number>(10);
   readonly cardsCount = input<number>(0);
   readonly cardPoolCount = input<number>(0);
+  readonly theme = input<CardTheme>('default');
 
   readonly resetGame = output<void>();
   readonly toggleMenu = output<void>();
+  readonly openTheme = output<void>();
+
+  themeName(): string {
+    return THEME_META.find((theme) => theme.id === this.theme())?.label ?? 'Default';
+  }
 }

@@ -95,6 +95,14 @@
   color: #fff;
   border: 2px solid #fff;
 
+  .card[data-theme='animals'] & {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  }
+
+  .card[data-theme='fruits'] & {
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  }
+
   .card-back-pattern {
     font-size: 1.8rem;
     font-weight: 800;

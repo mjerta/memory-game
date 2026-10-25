@@ -32,3 +32,33 @@ export const DEFAULT_CARDS: CardDefinition[] = [
   { id: 29, name: 'Coffee', category: 'food', image: 'cards/svg/coffee.svg' },
   { id: 30, name: 'Puzzle', category: 'games', image: 'cards/svg/puzzle.svg' },
 ];
+
+export const ANIMAL_CARDS: CardDefinition[] = [
+  { id: 31, name: 'Cat', category: 'animals', image: 'cards/svg/cat.svg' },
+  { id: 32, name: 'Dog', category: 'animals', image: 'cards/svg/dog.svg' },
+  { id: 33, name: 'Lion', category: 'animals', image: 'cards/svg/lion.svg' },
+  { id: 34, name: 'Elephant', category: 'animals', image: 'cards/svg/elephant.svg' },
+  { id: 35, name: 'Frog', category: 'animals', image: 'cards/svg/frog.svg' },
+  { id: 36, name: 'Butterfly', category: 'animals', image: 'cards/svg/butterfly.svg' },
+  { id: 37, name: 'Bee', category: 'animals', image: 'cards/svg/bee.svg' },
+  { id: 38, name: 'Owl', category: 'animals', image: 'cards/svg/owl.svg' },
+  { id: 39, name: 'Penguin', category: 'animals', image: 'cards/svg/penguin.svg' },
+  { id: 40, name: 'Turtle', category: 'animals', image: 'cards/svg/turtle.svg' },
+  { id: 41, name: 'Rabbit', category: 'animals', image: 'cards/svg/rabbit.svg' },
+  { id: 42, name: 'Fox', category: 'animals', image: 'cards/svg/fox.svg' },
+];
+
+export const FRUIT_CARDS: CardDefinition[] = [
+  { id: 43, name: 'Apple', category: 'fruits', image: 'cards/svg/apple.svg' },
+  { id: 44, name: 'Banana', category: 'fruits', image: 'cards/svg/banana.svg' },
+  { id: 45, name: 'Cherry', category: 'fruits', image: 'cards/svg/cherry.svg' },
+  { id: 46, name: 'Grapes', category: 'fruits', image: 'cards/svg/grapes.svg' },
+  { id: 47, name: 'Orange', category: 'fruits', image: 'cards/svg/orange.svg' },
+  { id: 48, name: 'Strawberry', category: 'fruits', image: 'cards/svg/strawberry.svg' },
+  { id: 49, name: 'Watermelon', category: 'fruits', image: 'cards/svg/watermelon.svg' },
+  { id: 50, name: 'Pineapple', category: 'fruits', image: 'cards/svg/pineapple.svg' },
+  { id: 51, name: 'Pear', category: 'fruits', image: 'cards/svg/pear.svg' },
+  { id: 52, name: 'Peach', category: 'fruits', image: 'cards/svg/peach.svg' },
+  { id: 53, name: 'Lemon', category: 'fruits', image: 'cards/svg/lemon.svg' },
+  { id: 54, name: 'Mango', category: 'fruits', image: 'cards/svg/mango.svg' },
+];
