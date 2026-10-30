@@ -90,6 +90,10 @@
   overflow: hidden;
 }
 
+.card.hide-card-name .card-name {
+  visibility: hidden;
+}
+
 .card-back {
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: #fff;

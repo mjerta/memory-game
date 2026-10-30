@@ -24,6 +24,7 @@ export class ThemePicker {
     }
   }
 
+
   choose(theme: CardTheme): void {
     this.selectTheme.emit(theme);
   }

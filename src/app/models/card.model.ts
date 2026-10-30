@@ -27,6 +27,8 @@ export interface ThemeMeta {
   /** Card-back gradient colours for this theme. */
   backFrom: string;
   backTo: string;
+  /** Accent colors used by the background aurora. */
+  palette: [string, string, string, string, string];
 }
 
 export const THEME_META: ThemeMeta[] = [
@@ -36,6 +38,7 @@ export const THEME_META: ThemeMeta[] = [
     preview: ['cards/svg/rocket.svg', 'cards/svg/diamond.svg', 'cards/svg/trophy.svg'],
     backFrom: '#4f46e5',
     backTo: '#7c3aed',
+    palette: ['#4f46e5', '#7c3aed', '#ec4899', '#22d3ee', '#f59e0b'],
   },
   {
     id: 'animals',
@@ -43,6 +46,7 @@ export const THEME_META: ThemeMeta[] = [
     preview: ['cards/svg/cat.svg', 'cards/svg/lion.svg', 'cards/svg/butterfly.svg'],
     backFrom: '#16a34a',
     backTo: '#15803d',
+    palette: ['#16a34a', '#84cc16', '#0ea5e9', '#f59e0b', '#22c55e'],
   },
   {
     id: 'fruits',
@@ -50,6 +54,7 @@ export const THEME_META: ThemeMeta[] = [
     preview: ['cards/svg/apple.svg', 'cards/svg/strawberry.svg', 'cards/svg/watermelon.svg'],
     backFrom: '#ea580c',
     backTo: '#c2410c',
+    palette: ['#ea580c', '#fb7185', '#facc15', '#d946ef', '#22c55e'],
   },
 ];
 

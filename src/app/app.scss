@@ -21,12 +21,13 @@
   padding-right: env(safe-area-inset-right, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   padding-left: env(safe-area-inset-left, 0px);
-  background: #f1f5f9;
+  background: transparent;
 }
 
 .app-layout {
   display: flex;
   flex-direction: column;
+  isolation: isolate;
   /* Stretch to the full viewport height declared on :host above. */
   flex: 1 1 auto;
   min-height: 0;

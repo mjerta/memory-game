@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, computed, inject, signal } from '@angular/core';
 import { CardService } from '../../services/card.service';
-import { CardDefinition, CardTheme, PlayingCard } from '../../models/card.model';
+import { CardDefinition, CardTheme, PlayingCard, THEME_META } from '../../models/card.model';
 import { ANIMAL_CARDS, DEFAULT_CARDS, FRUIT_CARDS } from '../../constants/card.constants';
 import { GameHeader } from '../game-header/game-header';
 import { VictoryBanner } from '../victory-banner/victory-banner';
@@ -12,6 +12,16 @@ import { TranslationService } from '../../services/translation.service';
 import { AudioService } from '../../services/audio.service';
 
 export type { PlayingCard } from '../../models/card.model';
+
+interface AmbientFigure {
+  image: string;
+  x: number;
+  y: number;
+  size: number;
+  rotation: number;
+  duration: number;
+  delay: number;
+}
 
 @Component({
   selector: 'app-game-board',
@@ -29,9 +39,31 @@ export class GameBoard implements OnInit {
 
   /** Master catalog of available card definitions */
   readonly cardPool = signal<CardDefinition[]>(DEFAULT_CARDS);
+  readonly ambientFigures = computed<AmbientFigure[]>(() => {
+    const shuffled = [...this.cardPool()];
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+      const other = Math.floor(Math.random() * (index + 1));
+      [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
+    }
+
+    return shuffled.slice(0, 7).map((card, index) => {
+      const duration = 13 + Math.random() * 9;
+      const isLeftSide = index % 2 === 0;
+      return {
+        image: card.image,
+        x: isLeftSide ? 3 + Math.random() * 12 : 85 + Math.random() * 12,
+        y: 12 + Math.random() * 76,
+        size: 64 + Math.random() * 48,
+        rotation: Math.round(Math.random() * 36 - 18),
+        duration,
+        delay: -Math.random() * duration,
+      };
+    });
+  });
 
   /** Currently selected card theme */
   readonly theme = signal<CardTheme>(this.loadTheme());
+  readonly themePalette = computed(() => THEME_META.find((item) => item.id === this.theme())?.palette ?? THEME_META[0].palette);
 
   /** Whether the theme picker overlay is open */
   readonly themePickerOpen = signal<boolean>(false);

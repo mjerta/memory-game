@@ -1,6 +1,5 @@
 import { Component, inject, input, output, signal } from '@angular/core';
-import { PlayingCard } from '../../models/card.model';
-import { CardTheme } from '../../models/card.model';
+import { CardTheme, PlayingCard } from '../../models/card.model';
 import { TranslationService } from '../../services/translation.service';
 
 @Component({
@@ -13,6 +12,7 @@ export class GameCard {
   readonly translations = inject(TranslationService);
   readonly card = input.required<PlayingCard>();
   readonly disabled = input<boolean>(false);
+  readonly showCardName = input<boolean>(true);
   readonly theme = input<CardTheme>('default');
 
   readonly cardClick = output<PlayingCard>();

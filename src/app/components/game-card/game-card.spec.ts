@@ -50,6 +50,16 @@ describe('GameCard', () => {
     expect(button.getAttribute('aria-label')).toBe('Hidden card');
   });
 
+  it('hides only the card name when requested and keeps the accessible label', () => {
+    fixture.componentRef.setInput('showCardName', false);
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector('.card') as HTMLButtonElement;
+
+    expect(button.classList.contains('hide-card-name')).toBe(true);
+    expect(button.querySelector('.card-back-pattern')).toBeTruthy();
+    expect(button.getAttribute('aria-label')).toBe('Hidden card');
+  });
+
   it('should have card name as aria-label and flipped class when flipped', () => {
     fixture.componentRef.setInput('card', { ...mockCard, isFlipped: true });
     fixture.detectChanges();

@@ -6,9 +6,72 @@
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
+  isolation: isolate;
+}
+
+.aurora-background {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #f1f5f9;
+}
+
+.aurora-blob {
+  position: absolute;
+  width: clamp(17rem, 38vw, 38rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(clamp(42px, 8vw, 100px));
+  opacity: 0.38;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+.aurora-blob-one {
+  top: -22%;
+  left: -12%;
+  background: var(--aurora-color-1);
+  animation: aurora-drift-one 21s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.aurora-blob-two {
+  top: 12%;
+  right: -18%;
+  width: clamp(18rem, 44vw, 44rem);
+  background: var(--aurora-color-3);
+  animation: aurora-drift-two 26s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.aurora-blob-three {
+  bottom: -24%;
+  left: 28%;
+  width: clamp(20rem, 46vw, 46rem);
+  background: var(--aurora-color-4);
+  animation: aurora-drift-three 31s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.ambient-figure {
+  position: absolute;
+  top: var(--figure-y);
+  left: var(--figure-x);
+  z-index: 1;
+  width: var(--figure-size);
+  height: var(--figure-size);
+  object-fit: contain;
+  opacity: 0;
+  filter: grayscale(0.1) saturate(0.85) blur(0.3px);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.55) rotate(var(--figure-rotation));
+  animation: ambient-figure-pop var(--figure-duration) ease-in-out var(--figure-delay) infinite;
+  will-change: opacity, transform;
 }
 
 .game-container {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +83,58 @@
   max-width: 860px;
   margin: 0 auto;
   padding: 1.25rem 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob {
+    animation: none;
+  }
+
+  .ambient-figure {
+    animation: none;
+    opacity: 0.11;
+    transform: translate(-50%, -50%) scale(1) rotate(var(--figure-rotation));
+  }
+}
+
+@keyframes ambient-figure-pop {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(8px) scale(0.55) rotate(var(--figure-rotation));
+  }
+  8% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) translateY(-2px) scale(1.08) rotate(calc(var(--figure-rotation) + 4deg));
+  }
+  16% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) translateY(-6px) scale(1) rotate(var(--figure-rotation));
+  }
+  27% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-14px) scale(0.92) rotate(calc(var(--figure-rotation) - 4deg));
+  }
+}
+
+@keyframes aurora-drift-one {
+  0% { transform: translate3d(-4vw, -2vh, 0) scale(0.94); }
+  34% { transform: translate3d(20vw, 14vh, 0) scale(1.12); }
+  68% { transform: translate3d(42vw, 38vh, 0) scale(0.98); }
+  100% { transform: translate3d(12vw, 48vh, 0) scale(1.14); }
+}
+
+@keyframes aurora-drift-two {
+  0% { transform: translate3d(0, 0, 0) scale(1.04); }
+  32% { transform: translate3d(-18vw, 26vh, 0) scale(0.92); }
+  70% { transform: translate3d(-44vw, 36vh, 0) scale(1.12); }
+  100% { transform: translate3d(-28vw, 4vh, 0) scale(0.96); }
+}
+
+@keyframes aurora-drift-three {
+  0% { transform: translate3d(-8vw, 0, 0) scale(0.96); }
+  36% { transform: translate3d(8vw, -24vh, 0) scale(1.14); }
+  72% { transform: translate3d(36vw, -40vh, 0) scale(0.92); }
+  100% { transform: translate3d(48vw, -16vh, 0) scale(1.12); }
 }
 
 .playing-field {

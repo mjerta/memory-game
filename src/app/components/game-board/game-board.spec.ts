@@ -53,6 +53,18 @@ describe('GameBoard', () => {
     expect(cardElements.length).toBe(20);
   });
 
+  it('shows a few card-inspired figures in the decorative background layer', () => {
+    const figures = fixture.nativeElement.querySelectorAll('.aurora-background .ambient-figure');
+    const availableImages = new Set(component.cardPool().map((card) => card.image));
+
+    expect(figures.length).toBe(7);
+    expect(fixture.nativeElement.querySelector('.aurora-background').getAttribute('aria-hidden')).toBe('true');
+    for (const figure of figures) {
+      expect(availableImages.has(figure.getAttribute('src'))).toBe(true);
+      expect(figure.getAttribute('alt')).toBe('');
+    }
+  });
+
   it('should switch the pool, deal a new theme and persist the selection', () => {
     httpTesting.expectOne('cards/cards.json').flush([]);
 
@@ -174,6 +186,7 @@ describe('GameBoard', () => {
     expect(component.isMenuOpen()).toBe(true);
     expect(fixture.nativeElement.querySelector('.header-details')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.compact-stats')).toBeNull();
+    expect(fixture.nativeElement.querySelectorAll('.card.hide-card-name').length).toBe(20);
 
     component.toggleMenu();
     fixture.detectChanges();
@@ -181,12 +194,14 @@ describe('GameBoard', () => {
     expect(component.isMenuOpen()).toBe(false);
     expect(fixture.nativeElement.querySelector('.header-details')).toBeNull();
     expect(fixture.nativeElement.querySelector('.compact-stats')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.card.hide-card-name')).toBeNull();
 
     component.toggleMenu();
     fixture.detectChanges();
 
     expect(component.isMenuOpen()).toBe(true);
     expect(fixture.nativeElement.querySelector('.header-details')).toBeTruthy();
+    expect(fixture.nativeElement.querySelectorAll('.card.hide-card-name').length).toBe(20);
   });
 
   it('should show victory banner when all cards are matched and reset board when play again is clicked', () => {

@@ -1,3 +1,22 @@
+<div class="aurora-background" aria-hidden="true"
+  [style.--aurora-color-1]="themePalette()[0]"
+  [style.--aurora-color-2]="themePalette()[1]"
+  [style.--aurora-color-3]="themePalette()[2]"
+  [style.--aurora-color-4]="themePalette()[3]">
+  <span class="aurora-blob aurora-blob-one"></span>
+  <span class="aurora-blob aurora-blob-two"></span>
+  <span class="aurora-blob aurora-blob-three"></span>
+  @for (figure of ambientFigures(); track $index) {
+    <img class="ambient-figure" [src]="figure.image" alt=""
+      [style.--figure-x]="figure.x + '%'"
+      [style.--figure-y]="figure.y + '%'"
+      [style.--figure-size]="figure.size + 'px'"
+      [style.--figure-rotation]="figure.rotation + 'deg'"
+      [style.--figure-duration]="figure.duration + 's'"
+      [style.--figure-delay]="figure.delay + 's'" />
+  }
+</div>
+
 <div
   class="game-container w-full max-w-[860px] mx-auto px-4 py-5 flex flex-col items-center"
   (click)="onOutsideClick($event)"
@@ -29,7 +48,7 @@
     (click)="onOutsideClick($event)"
   >
     @for (card of cards(); track card.uid) {
-      <app-game-card [card]="card" [theme]="theme()" [disabled]="isLocked()" (cardClick)="onCardClick($event)" />
+      <app-game-card [card]="card" [theme]="theme()" [disabled]="isLocked()" [showCardName]="!isMenuOpen()" (cardClick)="onCardClick($event)" />
     }
   </main>
 </div>
